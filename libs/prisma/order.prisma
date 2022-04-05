@@ -1,0 +1,11 @@
+model Order {
+  chain       String
+  sellingKey  String
+  buyingKey   String
+  fill        Decimal
+  total       Decimal
+  payments    Payment[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  @@unique([chain, sellingKey, buyingKey])
+}

@@ -1,0 +1,10 @@
+model Payment {
+  chain       String
+  id          String
+  buyingKey   String
+  value       Decimal
+  order       Order? @relation(fields: [chain, buyingKey], references: [chain, buyingKey], onUpdate: NoAction)
+  createdAt   DateTime
+  updatedAt   DateTime @updatedAt
+  @@unique([chain, id])
+}

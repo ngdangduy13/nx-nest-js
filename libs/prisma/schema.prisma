@@ -1,0 +1,143 @@
+//******** AUTO GENERATED FILE, DO NOT EDIT.  *********
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+
+enum CREDIT_STATUS {
+    NOT_VERIFY
+    SUBMITTED
+    VERIFYING
+    VERIFIED
+    REJECTED
+}
+
+enum SELLER_STATUS {
+    NOT_VERIFY
+    SUBMITTED
+    VERIFYING
+    VERIFIED
+    REJECTED
+}
+
+model Account {
+  id              String
+  displayName     String?
+  image           String?
+  cover           String?
+  video           String?
+  bio             String?
+  links           Json?
+  creditStatus    CREDIT_STATUS   @default(NOT_VERIFY)
+  creditLimit     Decimal         @default(0)
+  sellerStatus    SELLER_STATUS   @default(NOT_VERIFY)
+  commissionFee   Decimal         @default(0)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  @@unique([id])
+}
+
+
+model ExchangeRate {
+  chain       String
+  contract    String
+  value       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  @@unique([chain, contract])
+}
+
+
+model Nft {
+  chain         String
+  contract      String
+  tokenId       String
+  name          String?
+  symbol        String?
+  owner         String?
+  image         String?
+  priceUsd      Int?
+  status        Int @default(0)
+  numberOfView  Int @default(0)
+  makeQuotes    Quote[] @relation("makeNft")
+  takeQuotes    Quote[] @relation("takeNft")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  @@unique([chain, contract, tokenId])
+  @@index([chain, contract, tokenId, name])
+}
+
+
+model NftCollection {
+  chain       String
+  contract    String
+  name        String?
+  symbol      String?
+  type        String?
+  description String?
+  owner       String?
+  image       String?
+  banner      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  @@unique([chain, contract])
+}
+
+
+model Order {
+  chain       String
+  sellingKey  String
+  buyingKey   String
+  fill        Decimal
+  total       Decimal
+  payments    Payment[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  @@unique([chain, sellingKey, buyingKey])
+}
+
+
+model Payment {
+  chain       String
+  id          String
+  buyingKey   String
+  value       Decimal
+  order       Order? @relation(fields: [chain, buyingKey], references: [chain, buyingKey], onUpdate: NoAction)
+  createdAt   DateTime
+  updatedAt   DateTime @updatedAt
+  @@unique([chain, id])
+}
+
+
+model Quote {
+  chain                   String
+  hashKey                 String
+  maker                   String
+  makeAssetClass          String?
+  makeAssetContract       String?
+  makeAssetTokenId        String?
+  makeAssetValue          Decimal?
+  taker                   String?
+  takeAssetClass          String?
+  takeAssetContract       String?
+  takeAssetTokenId        String?
+  takeAssetValue          Decimal?
+  isMakeFill              Boolean
+  originFees              Int?
+  payouts                 Json?
+  signature               String?
+  fill                    Int @default(0)
+  status                  Int @default(0)
+  makeNft                 Nft? @relation(name: "makeNft", fields: [chain, makeAssetContract, makeAssetTokenId], references: [chain, contract, tokenId], onUpdate: NoAction)
+  takeNft                 Nft? @relation(name: "takeNft", fields: [chain, takeAssetContract, takeAssetTokenId], references: [chain, contract, tokenId], onUpdate: NoAction)
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+  @@unique([chain, hashKey])
+}

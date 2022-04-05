@@ -1,0 +1,25 @@
+model Quote {
+  chain                   String
+  hashKey                 String
+  maker                   String
+  makeAssetClass          String?
+  makeAssetContract       String?
+  makeAssetTokenId        String?
+  makeAssetValue          Decimal?
+  taker                   String?
+  takeAssetClass          String?
+  takeAssetContract       String?
+  takeAssetTokenId        String?
+  takeAssetValue          Decimal?
+  isMakeFill              Boolean
+  originFees              Int?
+  payouts                 Json?
+  signature               String?
+  fill                    Int @default(0)
+  status                  Int @default(0)
+  makeNft                 Nft? @relation(name: "makeNft", fields: [chain, makeAssetContract, makeAssetTokenId], references: [chain, contract, tokenId], onUpdate: NoAction)
+  takeNft                 Nft? @relation(name: "takeNft", fields: [chain, takeAssetContract, takeAssetTokenId], references: [chain, contract, tokenId], onUpdate: NoAction)
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+  @@unique([chain, hashKey])
+}

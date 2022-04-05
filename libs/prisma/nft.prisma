@@ -1,0 +1,18 @@
+model Nft {
+  chain         String
+  contract      String
+  tokenId       String
+  name          String?
+  symbol        String?
+  owner         String?
+  image         String?
+  priceUsd      Int?
+  status        Int @default(0)
+  numberOfView  Int @default(0)
+  makeQuotes    Quote[] @relation("makeNft")
+  takeQuotes    Quote[] @relation("takeNft")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  @@unique([chain, contract, tokenId])
+  @@index([chain, contract, tokenId, name])
+}
