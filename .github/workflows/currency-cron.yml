@@ -8,6 +8,4 @@ jobs:
     steps:
       - name: Call our Currency API route
         run: |
-          curl --request PUT \
-          --url 'https://yoursite.com/api/currency' \
-          --header 'Content-Type: application/json'
+          curl --location --request PUT 'https://api-asd123.vercel.app/api/currency'
