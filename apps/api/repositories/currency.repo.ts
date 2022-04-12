@@ -1,10 +1,10 @@
 import { prisma } from '@backend/providers';
 import { priceFeedService } from '@backend/services';
-import { Account, Currency } from '@prisma/client';
+import { Account, Currency, Prisma } from '@prisma/client';
 import { ethers } from 'ethers';
 
 class CurrencyRepo {
-  async upsertMany(currencies: Currency[]) {
+  async upsertMany(currencies: Prisma.CurrencyCreateInput[]) {
     const upserts = currencies.map((currency) =>
       prisma.currency.upsert({
         where: {
