@@ -14,9 +14,13 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     "paths": {
       "@api/*": ["apps/api/*"],
-      "@libs/models": ["libs/models/src/index.ts"]
+      "@backend/*": ["libs/backend/src/*"],
+      "@libs/models": ["libs/models/src/index.ts"],
+      "@libs/share": ["libs/share/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

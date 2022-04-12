@@ -45,31 +45,45 @@ model Account {
 }
 
 
-model ExchangeRate {
+model Currency {
   chain       String
   contract    String
-  value       String
+  value       Decimal
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  makAssets   Quote[] @relation("makeCurrency")
+  takeAssets  Quote[] @relation("takeCurrency")
   @@unique([chain, contract])
 }
 
 
 model Nft {
-  chain         String
-  contract      String
-  tokenId       String
-  name          String?
-  symbol        String?
-  owner         String?
-  image         String?
-  priceUsd      Int?
-  status        Int @default(0)
-  numberOfView  Int @default(0)
-  makeQuotes    Quote[] @relation("makeNft")
-  takeQuotes    Quote[] @relation("takeNft")
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  chain               String
+  contract            String
+  tokenId             String
+  hashKey             String
+  uri                 String?
+  name                String?
+  symbol              String?
+  image               String?
+  description         String?
+  supply              Decimal
+  attributes          Json?
+  creators            Json?
+  royalties           Json?
+  signatures          Json?
+  owner               String?
+  isLazy              Boolean? @default(false)
+  minted              Boolean? @default(true)
+  numberOfViews       Int @default(0)
+  numberOfFavorites   Int @default(0)
+  collection          NftCollection? @relation(fields: [chain, contract], references: [chain, contract], onUpdate: NoAction)
+  makeQuotes          Quote[] @relation("makeNft")
+  takeQuotes          Quote[] @relation("takeNft")
+  views               NftView[]
+  favorites           NftFavorite[]
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
   @@unique([chain, contract, tokenId])
   @@index([chain, contract, tokenId, name])
 }
@@ -85,33 +99,68 @@ model NftCollection {
   owner       String?
   image       String?
   banner      String?
+  nfts        Nft[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   @@unique([chain, contract])
 }
 
 
+model NftFavorite {
+  chain           String
+  contract        String
+  tokenId         String
+  account         String
+  nft             Nft @relation(fields: [chain, contract, tokenId], references: [chain, contract, tokenId], onUpdate: NoAction)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  @@unique([chain, contract, tokenId, account])
+}
+
+
+model NftView {
+  chain           String
+  contract        String
+  tokenId         String
+  account         String
+  ipAddress       String
+  nft             Nft @relation(fields: [chain, contract, tokenId], references: [chain, contract, tokenId], onUpdate: NoAction)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  @@unique([chain, contract, tokenId, account])
+}
+
+
 model Order {
-  chain       String
-  sellingKey  String
-  buyingKey   String
-  fill        Decimal
-  total       Decimal
-  payments    Payment[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  @@unique([chain, sellingKey, buyingKey])
+  chain           String
+  id              String
+  sellingKey      String
+  buyingKey       String
+  seller          String
+  buyer           String
+  contract        String
+  tokenId         String
+  fill            Decimal
+  currency        String
+  total           Decimal
+  nextPaymentDate DateTime?
+  dueDate         DateTime?
+  completed       Boolean
+  payments        Payment[]
+  createdAt       DateTime
+  updatedAt       DateTime @updatedAt
+  @@unique([chain, id])
 }
 
 
 model Payment {
-  chain       String
-  id          String
-  buyingKey   String
-  value       Decimal
-  order       Order? @relation(fields: [chain, buyingKey], references: [chain, buyingKey], onUpdate: NoAction)
-  createdAt   DateTime
-  updatedAt   DateTime @updatedAt
+  chain         String
+  id            String
+  orderId       String
+  amount        Decimal
+  createdAt     DateTime
+  updatedAt     DateTime @updatedAt
+  order         Order? @relation(fields: [chain, orderId], references: [chain, id], onUpdate: NoAction)
   @@unique([chain, id])
 }
 
@@ -123,12 +172,12 @@ model Quote {
   makeAssetClass          String?
   makeAssetContract       String?
   makeAssetTokenId        String?
-  makeAssetValue          Decimal?
+  makeAssetValue          Decimal? @db.Decimal(65,0)
   taker                   String?
   takeAssetClass          String?
   takeAssetContract       String?
   takeAssetTokenId        String?
-  takeAssetValue          Decimal?
+  takeAssetValue          Decimal? @db.Decimal(65,0)
   isMakeFill              Boolean
   originFees              Int?
   payouts                 Json?
@@ -137,6 +186,8 @@ model Quote {
   status                  Int @default(0)
   makeNft                 Nft? @relation(name: "makeNft", fields: [chain, makeAssetContract, makeAssetTokenId], references: [chain, contract, tokenId], onUpdate: NoAction)
   takeNft                 Nft? @relation(name: "takeNft", fields: [chain, takeAssetContract, takeAssetTokenId], references: [chain, contract, tokenId], onUpdate: NoAction)
+  makeCurrency            Currency? @relation(name: "makeCurrency", fields: [chain, makeAssetContract], references: [chain, contract], onUpdate: NoAction)
+  takeCurrency            Currency? @relation(name: "takeCurrency", fields: [chain, takeAssetContract], references: [chain, contract], onUpdate: NoAction)
   createdAt               DateTime @default(now())
   updatedAt               DateTime @updatedAt
   @@unique([chain, hashKey])

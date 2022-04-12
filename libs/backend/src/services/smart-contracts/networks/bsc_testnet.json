@@ -1,0 +1,197 @@
+{
+    "contractHelper": {
+        "address": "0x4F5F646ACab9Be0996ca7b391b757eBDbFA9917A"
+    },
+    "ethPriceOracleTest": {},
+    "controller": {
+        "licensor": "0xB4EE4c5582D8a9b04D7Cf5374D2aCCE3EA9a70B5",
+        "borrowRateLimit": "800000000000000000",
+        "maxCreaditLimit": "250000000000000000000",
+        "address": "0x8a01F10465B4c4f62DcfbCd23AB043595D25B6C6"
+    },
+    "btokens": {
+        "bether": {
+            "name": "bePAY Binance Coin",
+            "symbol": "BBC",
+            "decimals": 18,
+            "contractType": "BEther",
+            "initial_exchange_rate": "50000000000000000",
+            "payInFullInterestKey": "payInFull",
+            "payIn4InterestKey": "payIn4",
+            "priceOracle": "0x2514895c72f50D8bd4B4F9b1110F0D6bD2c97526",
+            "address": "0x44395D2aE5133E89121251C246A8df687c983577"
+        },
+        "berc20": {
+            "beacon": {
+                "address": "0x1abb788DFBBAE545f34a9E3F3724Bf68509Ead53"
+            },
+            "factory": {
+                "address": "0x88C679B9826780E2259730c14A9c88f20c4b9Ca7"
+            },
+            "instances": {
+                "usdc": {
+                    "name": "BEUSD Coin bePAY",
+                    "symbol": "BEUSD",
+                    "decimals": 8,
+                    "underlyingToken": {
+                        "name": "USD Coin bePAY",
+                        "symbol": "USDC",
+                        "decimals": 8,
+                        "owner": "0x70783B552b9EcFee75b58A75dc772F7Db456f783"
+                    },
+                    "contractType": "BErc20",
+                    "initial_exchange_rate": "50000000000000000",
+                    "payInFullInterestKey": "payInFull",
+                    "payIn4InterestKey": "payIn4",
+                    "underlying": "0x14A7746a1b166755E7F0674b1C1B4405Dd130a43",
+                    "priceOracle": "0x0000000000000000000000000000000000000000",
+                    "address": "0x6ddBdeD4Ea72f4B017103CA9c90f0f54fc091102"
+                },
+                "usdt": {
+                    "name": "BEUST Tether USD bePAY",
+                    "symbol": "BEUST",
+                    "decimals": 18,
+                    "underlyingToken": {
+                        "name": "Tether USD bePAY",
+                        "symbol": "USDT",
+                        "decimals": 18,
+                        "owner": "0x70783B552b9EcFee75b58A75dc772F7Db456f783"
+                    },
+                    "contractType": "BErc20",
+                    "initial_exchange_rate": "50000000000000000",
+                    "payInFullInterestKey": "payInFull",
+                    "payIn4InterestKey": "payIn4",
+                    "underlying": "0xb31C121d447B4de118Ab6530711E314359ac2904",
+                    "priceOracle": "0x0000000000000000000000000000000000000000",
+                    "address": "0x3D296113Cd2e043024070aaE405761100AeA36D9"
+                },
+                "busd": {
+                    "name": "BEBUSD Binance USD bePAY",
+                    "symbol": "BEBUSD",
+                    "decimals": 18,
+                    "underlyingToken": {
+                        "name": "Binance USD bePAY",
+                        "symbol": "BUSD",
+                        "decimals": 18,
+                        "owner": "0x70783B552b9EcFee75b58A75dc772F7Db456f783"
+                    },
+                    "contractType": "BErc20",
+                    "initial_exchange_rate": "50000000000000000",
+                    "payInFullInterestKey": "payInFull",
+                    "payIn4InterestKey": "payIn4",
+                    "underlying": "0xd5f5E19DEce81862f5bd335B0ddb446fc681fBd8",
+                    "priceOracle": "0x0000000000000000000000000000000000000000",
+                    "address": "0xfA66D18ADbf84f0DBDE97826E2D5171Ff66E3d24"
+                },
+                "wbnb": {
+                    "name": "BEWBNB Wrapped BNB bePAY",
+                    "symbol": "BEWBNB",
+                    "decimals": 18,
+                    "underlyingToken": {
+                        "name": "Wrapped BNB bePAY",
+                        "symbol": "WBNB",
+                        "decimals": 18,
+                        "owner": "0x70783B552b9EcFee75b58A75dc772F7Db456f783"
+                    },
+                    "contractType": "BErc20",
+                    "initial_exchange_rate": "50000000000000000",
+                    "payInFullInterestKey": "payInFull",
+                    "payIn4InterestKey": "payIn4",
+                    "underlying": "0xF8e3D6f8190f1e9b08D94D795Ac362bf457eb773",
+                    "priceOracle": "0x0000000000000000000000000000000000000000",
+                    "address": "0x9B554580d3da7a3ec6fb3734969DCC1916Fa8408"
+                }
+            }
+        }
+    },
+    "collectionAssetMatcher": {
+        "address": "0xd26578e6e9d747407C1e44f70C177F845a0C7F9c"
+    },
+    "royaltiesRegistry": {
+        "address": "0xD871CBcb97a483ECa93b24BD38Ee0Ee41c910C3c"
+    },
+    "interests": {
+        "payInFull": {
+            "lenderRate": "0",
+            "reverseRate": "25000000000000000",
+            "address": "0xa3B79301EeA095F07f94098757c267B56D48Ccf8"
+        },
+        "payIn4": {
+            "lenderRate": "400000000000000000",
+            "reverseRate": "600000000000000000",
+            "address": "0xD0d57C2cB0aAe8d1394c287a0f37626D3C065245"
+        }
+    },
+    "transferProxies": {
+        "erc20": {
+            "type": "ERC20",
+            "address": "0xbE94a4F71C31e8d227c1b93cbf3aB5063Cabaa94"
+        },
+        "nft": {
+            "type": "NFT",
+            "address": "0x2e268aAaA29bCb9Adb60b711C028aE62CC67F1f2"
+        },
+        "erc721_lazy": {
+            "type": "ERC721_LAZY",
+            "address": "0x658d12BDF9047EBbbaF673374ce6eC5F9B9EE330"
+        },
+        "erc1155_lazy": {
+            "type": "ERC1155_LAZY",
+            "address": "0x3C2CA503bF828aEE40DaBE266268fcb3eA6b9A47"
+        }
+    },
+    "nftMarket": {
+        "payInFullInterestKey": "payInFull",
+        "payIn4InterestKey": "payIn4",
+        "transferProxy": "nft",
+        "erc20TransferProxy": "erc20",
+        "borrowManager": "0xB4EE4c5582D8a9b04D7Cf5374D2aCCE3EA9a70B5",
+        "address": "0xFA1a817b8B3038A47A77201d4d9D3Df13D71f835"
+    },
+    "nfts": {
+        "erc721": {
+            "beacon": {
+                "address": "0x4FD48F1684f48e45649b8aD22c1b68c5Ef8B9B15"
+            },
+            "factory": {
+                "address": "0xe50620Dd15d1E252db349036329284B9799423ab"
+            },
+            "instances": {
+                "erc721": {
+                    "name": "bePAY",
+                    "symbol": "BE721",
+                    "baseURI": "https://ipfs.bepay.com",
+                    "contractURI": "https://us-central1-bepay-dev.cloudfunctions.net/api/contractMetadata/{address}",
+                    "contractType": "ERC721",
+                    "address": "0x11DdFd7cd230a6b5fB4471270E2757AC3085EB3C"
+                }
+            }
+        },
+        "erc1155": {
+            "beacon": {
+                "address": "0x25bb0d15Be656fAdA3Ca8b3Ac43A31bBC8E66AAE"
+            },
+            "factory": {
+                "address": "0xb1556596d808612bddC5f25a747d7CB07c7a173C"
+            },
+            "instances": {
+                "erc1155": {
+                    "name": "bePAY",
+                    "symbol": "BE1155",
+                    "baseURI": "",
+                    "contractURI": "https://us-central1-bepay-dev.cloudfunctions.net/api/contractMetadata/{address}",
+                    "contractType": "ERC1155",
+                    "address": "0x6ed3DE1048A52C216cA524538BB93265e8E8fEAB"
+                }
+            }
+        }
+    },
+    "operators": {},
+    "options": {
+        "confirmTime": 0,
+        "log": {
+            "level": "DEFAULT",
+            "verbose": false
+        }
+    }
+}

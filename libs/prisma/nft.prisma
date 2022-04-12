@@ -1,18 +1,30 @@
 model Nft {
-  chain         String
-  contract      String
-  tokenId       String
-  name          String?
-  symbol        String?
-  owner         String?
-  image         String?
-  priceUsd      Int?
-  status        Int @default(0)
-  numberOfView  Int @default(0)
-  makeQuotes    Quote[] @relation("makeNft")
-  takeQuotes    Quote[] @relation("takeNft")
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  chain               String
+  contract            String
+  tokenId             String
+  hashKey             String
+  uri                 String?
+  name                String?
+  symbol              String?
+  image               String?
+  description         String?
+  supply              Decimal
+  attributes          Json?
+  creators            Json?
+  royalties           Json?
+  signatures          Json?
+  owner               String?
+  isLazy              Boolean? @default(false)
+  minted              Boolean? @default(true)
+  numberOfViews       Int @default(0)
+  numberOfFavorites   Int @default(0)
+  collection          NftCollection? @relation(fields: [chain, contract], references: [chain, contract], onUpdate: NoAction)
+  makeQuotes          Quote[] @relation("makeNft")
+  takeQuotes          Quote[] @relation("takeNft")
+  views               NftView[]
+  favorites           NftFavorite[]
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
   @@unique([chain, contract, tokenId])
   @@index([chain, contract, tokenId, name])
 }

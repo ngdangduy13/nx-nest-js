@@ -15,13 +15,18 @@ class AccountService {
     const address = sigUtil.recoverPersonalSignature({ data: msgBufferHex, sig: request.signature });
 
     const account = await AccountRepo.upsert(address);
-    return jwt.sign({
+    const token = jwt.sign({
       data: {
         uid: account.id,
-        canPay4: account.creditStatus === CREDIT_STATUS.VERIFIED,
-        canSell: account.sellerStatus === SELLER_STATUS.VERIFIED
+        displayName: account.displayName,
+        image: account.image,
+        commissionFee: account.commissionFee,
+        canSell: account.sellerStatus === SELLER_STATUS.VERIFIED,
+        canBNPL: account.creditStatus === CREDIT_STATUS.VERIFIED
       }
-    }, getConfig('TOKEN_SECRET'), { expiresIn: getConfig('TOKEN_LIFE_TIME') });;
+    }, getConfig('TOKEN_SECRET'), { expiresIn: getConfig('TOKEN_LIFE_TIME') });
+
+    return { token };
   }
 
   async update(id: string, request: UpdateProfileRequest) {

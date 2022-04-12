@@ -1,0 +1,10 @@
+model Currency {
+  chain       String
+  contract    String
+  value       Decimal
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  makAssets   Quote[] @relation("makeCurrency")
+  takeAssets  Quote[] @relation("takeCurrency")
+  @@unique([chain, contract])
+}

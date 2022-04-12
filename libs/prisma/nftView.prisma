@@ -1,0 +1,11 @@
+model NftView {
+  chain           String
+  contract        String
+  tokenId         String
+  account         String
+  ipAddress       String
+  nft             Nft @relation(fields: [chain, contract, tokenId], references: [chain, contract, tokenId], onUpdate: NoAction)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  @@unique([chain, contract, tokenId, account])
+}

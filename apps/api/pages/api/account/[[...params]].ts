@@ -12,7 +12,7 @@ class AccountHandler {
 
   @Put()
   @AuthGuard()
-  async update(@UserId() uid: string, @Body() request: UpdateProfileRequest) {
+  async update(@UserId() uid: string, @Body(ValidationPipe) request: UpdateProfileRequest) {
     return AccountService.update(uid, request);
   }
 

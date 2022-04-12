@@ -5,12 +5,12 @@ model Quote {
   makeAssetClass          String?
   makeAssetContract       String?
   makeAssetTokenId        String?
-  makeAssetValue          Decimal?
+  makeAssetValue          Decimal? @db.Decimal(65,0)
   taker                   String?
   takeAssetClass          String?
   takeAssetContract       String?
   takeAssetTokenId        String?
-  takeAssetValue          Decimal?
+  takeAssetValue          Decimal? @db.Decimal(65,0)
   isMakeFill              Boolean
   originFees              Int?
   payouts                 Json?
@@ -19,6 +19,8 @@ model Quote {
   status                  Int @default(0)
   makeNft                 Nft? @relation(name: "makeNft", fields: [chain, makeAssetContract, makeAssetTokenId], references: [chain, contract, tokenId], onUpdate: NoAction)
   takeNft                 Nft? @relation(name: "takeNft", fields: [chain, takeAssetContract, takeAssetTokenId], references: [chain, contract, tokenId], onUpdate: NoAction)
+  makeCurrency            Currency? @relation(name: "makeCurrency", fields: [chain, makeAssetContract], references: [chain, contract], onUpdate: NoAction)
+  takeCurrency            Currency? @relation(name: "takeCurrency", fields: [chain, takeAssetContract], references: [chain, contract], onUpdate: NoAction)
   createdAt               DateTime @default(now())
   updatedAt               DateTime @updatedAt
   @@unique([chain, hashKey])

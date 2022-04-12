@@ -1,0 +1,200 @@
+{
+    "contractHelper": {
+        "address": "0x622E20F91512666B8bB279B62c47BC71039fDd8A"
+    },
+    "ethPriceOracleTest": {},
+    "controller": {
+        "licensor": "0xB4EE4c5582D8a9b04D7Cf5374D2aCCE3EA9a70B5",
+        "borrowRateLimit": "800000000000000000",
+        "address": "0x022c1Db1d103905c62E28F2E0912ED08592Df5DF"
+    },
+    "btokens": {
+        "bether": {
+            "name": "BePay Ether Coin",
+            "symbol": "BETH",
+            "decimals": 18,
+            "contractType": "BEther",
+            "initial_exchange_rate": "50000000000000000",
+            "payInFullInterestKey": "payInFull",
+            "payIn4InterestKey": "payIn4",
+            "priceOracle": "0x0000000000000000000000000000000000000000",
+            "address": "0xc3D90cc13908cdBf9aa443F36685262d169363BF"
+        },
+        "berc20": {
+            "beacon": {
+                "address": "0xf6EAe87554123091b5abdf30d929B8C4eEf1a239"
+            },
+            "factory": {
+                "address": "0x504fb7837DdE529247a9216633ad2d916c3D9B99"
+            },
+            "instances": {
+                "usdc": {
+                    "name": "BEUSD Coin bePAY",
+                    "symbol": "BEUSD",
+                    "decimals": 8,
+                    "underlyingToken": {
+                        "name": "USD Coin bePAY",
+                        "symbol": "USDC",
+                        "decimals": 8,
+                        "owner": "0x70783B552b9EcFee75b58A75dc772F7Db456f783",
+                        "address": "0x1469F47e76861948A9bAb068258dE5186134A023"
+                    },
+                    "contractType": "BErc20",
+                    "initial_exchange_rate": "50000000000000000",
+                    "payInFullInterestKey": "payInFull",
+                    "payIn4InterestKey": "payIn4",
+                    "underlying": "0x1469F47e76861948A9bAb068258dE5186134A023",
+                    "priceOracle": "0x0000000000000000000000000000000000000000",
+                    "address": "0x53F53be0160dE65a3b88f890f43FA96be1a8e13a"
+                },
+                "usdt": {
+                    "name": "BEUST Tether USD bePAY",
+                    "symbol": "BEUST",
+                    "decimals": 18,
+                    "underlyingToken": {
+                        "name": "Tether USD bePAY",
+                        "symbol": "USDT",
+                        "decimals": 18,
+                        "owner": "0x70783B552b9EcFee75b58A75dc772F7Db456f783",
+                        "address": "0xf3B0D4E3030DC6CF30b179281E156529b6BD1E8B"
+                    },
+                    "contractType": "BErc20",
+                    "initial_exchange_rate": "50000000000000000",
+                    "payInFullInterestKey": "payInFull",
+                    "payIn4InterestKey": "payIn4",
+                    "underlying": "0xf3B0D4E3030DC6CF30b179281E156529b6BD1E8B",
+                    "priceOracle": "0x0000000000000000000000000000000000000000",
+                    "address": "0x4586eEe131f9851BD6A9c715FD4fC97839a7e9C8"
+                },
+                "busd": {
+                    "name": "BEBUSD Binance USD bePAY",
+                    "symbol": "BEBUSD",
+                    "decimals": 18,
+                    "underlyingToken": {
+                        "name": "Binance USD bePAY",
+                        "symbol": "BUSD",
+                        "decimals": 18,
+                        "owner": "0x70783B552b9EcFee75b58A75dc772F7Db456f783",
+                        "address": "0xaF045f8Ad339958fe2941734346158a8D64A3812"
+                    },
+                    "contractType": "BErc20",
+                    "initial_exchange_rate": "50000000000000000",
+                    "payInFullInterestKey": "payInFull",
+                    "payIn4InterestKey": "payIn4",
+                    "underlying": "0xaF045f8Ad339958fe2941734346158a8D64A3812",
+                    "priceOracle": "0x0000000000000000000000000000000000000000",
+                    "address": "0x051639aAa5bbd6E2B2B1e471a00c5b9d1506e61a"
+                },
+                "wbnb": {
+                    "name": "BEWBNB Wrapped BNB bePAY",
+                    "symbol": "BEWBNB",
+                    "decimals": 18,
+                    "underlyingToken": {
+                        "name": "Wrapped BNB bePAY",
+                        "symbol": "WBNB",
+                        "decimals": 18,
+                        "owner": "0x70783B552b9EcFee75b58A75dc772F7Db456f783",
+                        "address": "0xEB40DD4030Db39b63CD3bf827Fe476C07Af0DB45"
+                    },
+                    "contractType": "BErc20",
+                    "initial_exchange_rate": "50000000000000000",
+                    "payInFullInterestKey": "payInFull",
+                    "payIn4InterestKey": "payIn4",
+                    "underlying": "0xEB40DD4030Db39b63CD3bf827Fe476C07Af0DB45",
+                    "priceOracle": "0x0000000000000000000000000000000000000000",
+                    "address": "0x9B1cA8b722228A12b38a5EaF6A0C560A2b71aBbf"
+                }
+            }
+        }
+    },
+    "collectionAssetMatcher": {
+        "address": "0x395de58A607A551F98297c38b388f11930ED97Bb"
+    },
+    "royaltiesRegistry": {
+        "address": "0x3713198BE237353F377a8b34fBba590B2dd0704e"
+    },
+    "interests": {
+        "payInFull": {
+            "lenderRate": "0",
+            "reverseRate": "25000000000000000",
+            "address": "0x1a3A4F3201c88c73c099A114a1A4EC3Bd09f46ae"
+        },
+        "payIn4": {
+            "lenderRate": "400000000000000000",
+            "reverseRate": "600000000000000000",
+            "address": "0xB05532Ca178dDd1e97E08BbAdB64c4D12462B308"
+        }
+    },
+    "transferProxies": {
+        "erc20": {
+            "type": "ERC20",
+            "address": "0xA0fC8a67986317789d1F7cca718A37fda66FBCcC"
+        },
+        "nft": {
+            "type": "NFT",
+            "address": "0xf0Bf677db5a9d7563fdAaDB3feAdCDC9888834ff"
+        },
+        "erc721_lazy": {
+            "type": "ERC721_LAZY",
+            "address": "0x2e705Ff9542178dD06cE5CBE25C3E9Ed370b67e7"
+        },
+        "erc1155_lazy": {
+            "type": "ERC1155_LAZY",
+            "address": "0x104675D7CAA5a8a04C755e820fcE02988a6b65E0"
+        }
+    },
+    "nftMarket": {
+        "payInFullInterestKey": "payInFull",
+        "payIn4InterestKey": "payIn4",
+        "transferProxy": "nft",
+        "erc20TransferProxy": "erc20",
+        "borrowManager": "0xB4EE4c5582D8a9b04D7Cf5374D2aCCE3EA9a70B5",
+        "address": "0xf377F3926137B09bFA346CB77BEa0DE0746dB02d"
+    },
+    "nfts": {
+        "erc721": {
+            "beacon": {
+                "address": "0x6A5025F880FA558796c86E50607E2114F330373B"
+            },
+            "factory": {
+                "address": "0x0A034d9897D922b2D36487A38435fb2ad92CB45a"
+            },
+            "instances": {
+                "erc721": {
+                    "name": "bePAY",
+                    "symbol": "BE721",
+                    "baseURI": "https://ipfs.bepay.com",
+                    "contractURI": "https://us-central1-bepay-dev.cloudfunctions.net/api/contractMetadata/{address}",
+                    "contractType": "ERC721",
+                    "address": "0x85a8398683Caf67f7Fa4eD308C311911F5372de0"
+                }
+            }
+        },
+        "erc1155": {
+            "beacon": {
+                "address": "0xE279DfF4CF890543Fc58452F6612F5feF080fBA1"
+            },
+            "factory": {
+                "address": "0xAfA7e118E4ec507baE688Cc9d50C340E4AAb0d63"
+            },
+            "instances": {
+                "erc1155": {
+                    "name": "bePAY",
+                    "symbol": "BE1155",
+                    "baseURI": "",
+                    "contractURI": "https://us-central1-bepay-dev.cloudfunctions.net/api/contractMetadata/{address}",
+                    "contractType": "ERC1155",
+                    "address": "0x77225ceb84F2Dc763ea4Bd5D09bdE215A35C513B"
+                }
+            }
+        }
+    },
+    "operators": {},
+    "options": {
+        "confirmTime": 0,
+        "log": {
+            "level": "DEFAULT",
+            "verbose": false
+        }
+    }
+}

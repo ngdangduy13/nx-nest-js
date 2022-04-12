@@ -1,19 +1,17 @@
-import { prisma } from '@api/providers';
+import { prisma } from '@backend/providers';
 import { Account } from '@prisma/client';
 
 class AccountRepo {
   async upsert(address: string) {
-    await prisma.account.upsert({
+    return await prisma.account.upsert({
       where: {
         id: address,
       },
       update: {},
       create: {
         id: address
-      },
+      }
     });
-
-    return this.getById(address);
   }
 
   async update(id: string, account: Partial<Account>) {
