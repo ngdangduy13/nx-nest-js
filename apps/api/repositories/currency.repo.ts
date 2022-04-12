@@ -9,8 +9,8 @@ class CurrencyRepo {
       prisma.currency.upsert({
         where: {
           chain_contract: {
-            chain: 'bsc',
-            contract: '0x',
+            chain: currency.chain,
+            contract: currency.contract,
           },
         },
         update: {
