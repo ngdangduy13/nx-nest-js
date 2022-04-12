@@ -1,7 +1,7 @@
 name: currency-cron
 on:
   schedule:
-    - cron: '*/2 * * * *'
+    - cron: '* * * * *'
 jobs:
   cron:
     runs-on: ubuntu-latest
